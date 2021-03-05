@@ -1,12 +1,28 @@
 function findSmallNums(nums) {
+  let newNums = [];
+  let k = 0;
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  for(let i=0; i<nums.length; i++){
+    if (nums[i] < 1) {
+      newNums[k] = nums[i];
+      k++;
+    }
+  }
+   return newNums;
 }
 
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  // Your code here
+  let newArray = [];
+  let s = 0;
+  for(let i in names){
+    if (names[i].startsWith(char)){
+      newArray[s] = names[i];
+      s++;
+    }
+  }
+  return newArray;
 }
 
 function findVerbs(words) {

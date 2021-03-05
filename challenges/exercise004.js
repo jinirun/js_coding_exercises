@@ -26,34 +26,68 @@ function findNamesBeginningWith(names, char) {
 }
 
 function findVerbs(words) {
+  let returnVerbs = [];
+  let k = 0;
   if (!words) throw new Error("words is required");
-  // Your code here
+  for(let i in words){
+    if (words[i].startsWith('to ')) {
+      returnVerbs[k] = words[i];
+      k++;
+    }
+  }
+  return returnVerbs;
 }
 
 function getIntegers(nums) {
+  let k = 0;
+  let returnInt = [];
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  for(let i in nums){
+    if(nums[i] % 1 == 0) {
+      returnInt[k] = nums[i];
+      k++;
+    }
+  }
+  return returnInt;
 }
 
 function getCities(users) {
+  let returnCity = [];
   if (!users) throw new Error("users is required");
-  // Your code here
+  for(let i in users){
+    returnCity[i] = users[i].data.city.displayName;
+  }
+  return returnCity;
 }
 
 function getSquareRoots(nums) {
+
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  return ((nums.map(function (x){
+    x = Math.sqrt(x);
+    return +x.toFixed(2);
+  })));
 }
 
 function findSentencesContaining(sentences, str) {
+  let returnSentences = [];
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  // Your code here
+  for(let i in sentences){
+    if ((sentences[i].toLowerCase()).includes(str.toLowerCase())){
+      returnSentences.push(sentences[i]);
+    }
+  }
+  return (returnSentences);
 }
 
 function getLongestSides(triangles) {
+  let largestSide = [];
   if (!triangles) throw new Error("triangles is required");
-  // Your code here
+  for(let i in triangles){
+    largestSide[i] = Math.max(...triangles[i]);
+  }
+  return largestSide;
 }
 
 module.exports = {

@@ -4,6 +4,12 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  let sum = 0;
+  let num = n.toString().split('');
+  for(let j=0; j<num.length; j++){
+    sum += parseInt(num[j]);
+  }
+  return (sum);
 };
 
 /**
@@ -17,6 +23,13 @@ const sumDigits = n => {
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+  let newArray = [];
+  if (step === 0)
+    step = 1;
+  for(let k=start; k<=end; k += step){
+    newArray.push(k);
+  }
+  return (newArray);
 };
 
 /**
@@ -51,6 +64,26 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  let stime = [];
+  let sdate = "";
+  let sumOfScreenTime = 0;
+  let userName = "";
+
+  for(let m in users){
+    for(let q in users[m].screenTime){
+      sdate = (Object.values(users[m].screenTime[q].date)).join('');
+      if (sdate === date){
+        stime = Object.values(users[m].screenTime[q].usage);
+        userName = users[m].username;
+        for(let r=0; r<stime.length; r++){
+          sumOfScreenTime += stime[r];
+        }
+        if(sumOfScreenTime < 100)
+          userName = "";
+      }
+    }
+  }
+  return ([userName]);
 };
 
 /**
@@ -65,6 +98,17 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  let hexConverted = [];
+  let hexArray = [];
+  for(let i=1; i<hexStr.length; i+=2){
+    for(let j=i; j<i+1; j++){
+      hexArray.push([hexStr.substr(j,2)]);
+    }
+  }
+  for(let k=0; k<hexArray.length; k++){
+    hexConverted.push(parseInt(hexArray[k], 16));
+  }
+  return ("rgb(" + hexConverted.toString() + ")");
 };
 
 /**
@@ -79,6 +123,79 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  let xCount = 0;
+  let zCount = 0;
+  let winnerFound = "null";
+//check row
+  for(let i=0; i<board.length;i++){
+    xCount = 0;
+    zCount = 0;
+    for(let j=0; j<board[i].length;j++){
+      if(board[i][j] === "X")
+        xCount += 1;
+
+      if(board[i][j] === "0")
+        zCount += 1;
+    }
+    if(xCount === 3)
+      winnerFound = "X";
+    else if (zCount === 3)
+      winnerFound = "0";
+  }
+
+//check column
+  if(winnerFound === "null"){
+    for(let i=0; i<board.length;i++){
+      xCount = 0;
+      zCount = 0;
+      for(let j=0; j<board[i].length;j++){
+        if(board[j][i] === "X")
+          xCount += 1;
+        if(board[j][i] === "0")
+          zCount += 1;
+      }
+      if(xCount === 3)
+        winnerFound = "X";
+      else if (zCount === 3)
+        winnerFound = "0";
+    }
+  }
+//check diagonal
+  if(winnerFound === "null"){
+    xCount = 0;
+    zCount = 0;
+    for(let i=0; i<board.length;i++){
+      for(let j=0; j<board[i].length;j++){
+        if(board[i][j] === "X" && i === j)
+          xCount += 1;
+        if(board[i][j] === "0" && i === j)
+          zCount += 1;
+      }
+      if(xCount === 3)
+        winnerFound = "X";
+      else if (zCount === 3)
+        winnerFound = "0";
+    }
+  }
+//diagonal check
+  let len = board.length;
+  if(winnerFound === "null"){
+    xCount = 0;
+    zCount = 0;
+    for(let i=0; i<board.length;i++){
+      for(let j=0; j<board[i].length;j++){
+        if(board[i][j] === "X" && i+j === len-1)
+          xCount += 1;
+        if(board[i][j] === "0" && i+j === len-1)
+          zCount += 1;
+      }
+      if(xCount === 3)
+        winnerFound = "X";
+      else if (zCount === 3)
+        winnerFound = "0";
+    }
+  }
+  return (winnerFound);
 };
 
 module.exports = {

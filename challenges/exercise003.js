@@ -1,7 +1,7 @@
 function getSquares(nums) {
   let tempNums = [];
   if (nums === undefined) throw new Error("nums is required");
-  if (nums == [])
+  if (nums === [])
       return [];
   else{
     tempNums = nums.map(function (x) {
@@ -14,7 +14,7 @@ function getSquares(nums) {
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
   let str2 = [words[0]];
-  if (words.length == 1 )
+  if (words.length === 1 )
     return(words.join(''));
   else{
     for(let i=1; i<=words.length-1;i++){
@@ -29,16 +29,16 @@ function getTotalSubjects(people) {
   let len   = 0;
   if (people === undefined) throw new Error("people is required");
   for(let i in people) {
-    if (people[i].subjects == [])
+    if (people[i].subjects === [])
       continue;
     else {
       count += 1;
     }
     len += people[i].subjects.length;
   }
-  if(count == 0)
+  if(count === 0)
     return 0;
-  else if(count == 1)
+  else if(count === 1)
     return 1;
   else{
     return len;
@@ -50,7 +50,7 @@ function checkIngredients(menu, ingredient) {
   if (!ingredient) throw new Error("ingredient is required");
   for(let i=0; i<=menu.length-1; i++){
     for(let j=0; j<=menu[i].ingredients.length-1; j++) {
-      if (menu[i].ingredients[j] == ingredient)
+      if (menu[i].ingredients[j] === ingredient)
         return true;
       else
         continue;

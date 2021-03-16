@@ -10,6 +10,8 @@ const findNextNumber = (nums, n) => {
 
 const count1sand0s = str => {
   const numOfOnesAndZeros = {};
+  numOfOnesAndZeros[0] = 0;
+  numOfOnesAndZeros[1] = 0;
   if (str === undefined) throw new Error("str is required");
   for(let i=0; i < str.length; i++){
     var oneOrZero = parseInt(str[i]);

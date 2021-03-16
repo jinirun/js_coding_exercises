@@ -66,9 +66,14 @@ function duplicateNumbers(arr1, arr2) {
   if (arr2 === undefined) throw new Error("arr2 is required");
   for(let i in arr1){
     for(let j in arr2){
-      if(arr1[i] == arr2[j]){
-        arr3[k] = arr1[i];
-        k++;
+      if(arr1[i] === arr2[j]){
+        if (arr3.includes(arr1[i])){
+          continue;
+        }
+        else{
+          arr3[k] = arr1[i];
+          k++;
+        }
       }
     }
   }

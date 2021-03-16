@@ -64,6 +64,7 @@ const findNeedle = (haystack, searchTerm) => {
 };
 
 const getWordFrequencies = str => {
+  str = str.replace(/[,!?]/g,'');
   const frequencies = {};
   const str1 = str.split(" ");
   if (str === undefined) throw new Error("str is required");

@@ -14,7 +14,7 @@ const count1sand0s = str => {
   numOfOnesAndZeros[1] = 0;
   if (str === undefined) throw new Error("str is required");
   for(let i=0; i < str.length; i++){
-    var oneOrZero = parseInt(str[i]);
+    const oneOrZero = parseInt(str[i]);
     if(numOfOnesAndZeros[oneOrZero] === undefined)
       numOfOnesAndZeros[oneOrZero] = 1;
     else
@@ -67,7 +67,7 @@ const getWordFrequencies = str => {
   str = str.replace(/[,!?]/g,'');
   const frequencies = {};
   const str1 = str.split(" ");
-  if (str === undefined) throw new Error("str is required");
+  if (!str) throw new Error("str is required");
   for(let i in str1){
     const word = str1[i].toLowerCase();
     if(frequencies[word] === undefined)
